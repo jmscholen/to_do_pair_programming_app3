@@ -1,0 +1,13 @@
+= form_for @assignee do |f|
+  - if @assignee.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@assignee.errors.count, "error")} prohibited this assignee from being saved:"
+      %ul
+        - @assignee.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :assignee_name
+    = f.text_field :assignee_name
+  .actions
+    = f.submit 'Save'
