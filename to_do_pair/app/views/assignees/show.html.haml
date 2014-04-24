@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Assignee name:
+  = @assignee.assignee_name
+
+= link_to 'Edit', edit_assignee_path(@assignee)
+\|
+= link_to 'Back', assignees_path
