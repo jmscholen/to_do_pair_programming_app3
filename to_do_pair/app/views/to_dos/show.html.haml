@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Task name:
+  = @to_do.task_name
+%p
+  %b Task description:
+  = @to_do.task_description
+%p
+  %b Complete:
+  = @to_do.complete
+%p
+  %b Due date:
+  = @to_do.due_date
+%p
+  %b Assignee:
+  = @to_do.assignee_id
+
+= link_to 'Edit', edit_to_do_path(@to_do)
+\|
+= link_to 'Back', to_dos_path

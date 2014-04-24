@@ -1,0 +1,27 @@
+%h1 Listing to_dos
+
+%table
+  %tr
+    %th Task name
+    %th Task description
+    %th Complete
+    %th Due date
+    %th Assignee
+    %th
+    %th
+    %th
+
+  - @to_dos.each do |to_do|
+    %tr
+      %td= to_do.task_name
+      %td= to_do.task_description
+      %td= to_do.complete
+      %td= to_do.due_date
+      %td= to_do.assignee_id
+      %td= link_to 'Show', to_do
+      %td= link_to 'Edit', edit_to_do_path(to_do)
+      %td= link_to 'Destroy', to_do, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New To do', new_to_do_path
