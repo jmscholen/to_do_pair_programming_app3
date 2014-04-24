@@ -1,0 +1,19 @@
+%h1 Listing assignees
+
+%table
+  %tr
+    %th Assignee name
+    %th
+    %th
+    %th
+
+  - @assignees.each do |assignee|
+    %tr
+      %td= assignee.assignee_name
+      %td= link_to 'Show', assignee
+      %td= link_to 'Edit', edit_assignee_path(assignee)
+      %td= link_to 'Destroy', assignee, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Assignee', new_assignee_path
