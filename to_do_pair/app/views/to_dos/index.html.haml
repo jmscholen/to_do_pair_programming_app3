@@ -1,11 +1,15 @@
 %h2 Search for Todo's
 = form_tag search_to_dos_path, method: :get do
   Start Date:
-  
+  = date_field_tag "search[start_date]"
   End Date:
-  
+  = date_field_tag "search[end_date]"
+  %br
+  %br
   Name:
-  
+  = select_tag "search[assignee_name]", options_for_select(Assignee.pluck(:assignee_name)), include_blank: true
+  Completed?
+  =radio_button_tag "search[completed]", true, checked = false
   = submit_tag "Search"
 
 
@@ -23,12 +27,13 @@
     %th
 
   - @to_dos.each do |to_do|
+    - person = Assignee.find(to_do.assignee_id)
     %tr
       %td= to_do.task_name
       %td= to_do.task_description
       %td= to_do.complete
       %td= to_do.due_date
-      %td= to_do.assignee_id
+      %td= person.assignee_name
       %td= link_to 'Show', to_do
       %td= link_to 'Edit', edit_to_do_path(to_do)
       %td= link_to 'Destroy', to_do, :method => :delete, :data => { :confirm => 'Are you sure?' }
