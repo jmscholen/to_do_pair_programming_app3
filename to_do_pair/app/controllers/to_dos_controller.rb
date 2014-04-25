@@ -63,6 +63,7 @@ class ToDosController < ApplicationController
 
     def search
       @to_dos = ToDo.search(params[:search])
+      render :index
     end
 
   private

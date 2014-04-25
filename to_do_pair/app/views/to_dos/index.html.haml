@@ -1,11 +1,13 @@
 %h2 Search for Todo's
 = form_tag search_to_dos_path, method: :get do
   Start Date:
-  
+  = date_field_tag "search[start_date]"
   End Date:
-  
+  = date_field_tag "search[end_date]", order: [:year, :month, :day]
+  %br
+  %br
   Name:
-  
+  = select_tag "search[assignee_id]", options_for_select(Assignee.pluck(:assignee_name)), include_blank: true
   = submit_tag "Search"
 
 
