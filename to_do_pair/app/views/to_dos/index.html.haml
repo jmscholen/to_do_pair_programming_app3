@@ -1,68 +1,68 @@
 .wrap
   / = Navigation
-  .navbar.navbar-default.navbar-fixed-top
-    .container
-      = form_tag search_to_dos_path, method: :get do
-        Start Date:
-        = date_field_tag "search[start_date]"
-        End Date:
-        = date_field_tag "search[end_date]"
-        Name:
-        = select_tag "search[assignee_name]", options_for_select(Assignee.pluck(:assignee_name)), include_blank: true
-        Completed?
-        =radio_button_tag "search[completed]", true, checked = false
-        = submit_tag "Search"
-      .navbar-header
+  .navbar.navbar-default.col-md-12
+    = form_tag search_to_dos_path, :class => "form-inline", method: :get do
+
+      Start Date:
+      = date_field_tag "search[start_date]","x", :class => "form-control col-md-2"
+      
+      End Date:
+      = date_field_tag "search[end_date]","x", :class => "form-control col-md-2"
+      
+      Name:
+      = select_tag "search[assignee_name]", options_for_select(Assignee.pluck(:assignee_name)), include_blank: true, :class => "form-control col-md-2"
+      
+      Completed?
+      =radio_button_tag "search[completed]", true, checked = false, :class => "radio"
+      
+      = submit_tag "Search", :class => "btn btn-default"
+      
+      = link_to "New To Do", new_to_do_path, :method => :get, :class => "btn btn-primary"
+      
+      = link_to 'New Assignee', new_assignee_path, :method => :get, :class => "btn btn-primary"  
 
 / = Page content
 .container
-  .page-header
-    %br
-    %br
-    = button_to 'New To do', new_to_do_path, :method => :get
-    = button_to 'New Assignee', new_assignee_path, :method => :get
-    %br
-    %h2 Current Tasks
-
-    %table.table.table-hover
-      %thead
+  .col-md-12
+  %h2 Current Tasks
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Complete
+        %th Task name
+        %th Due date
+        %th Assignee
+        %th Edit
+        %th Remove Task
+    %tbody
+    - @to_dos.each do |to_do|
+      - person = Assignee.find(to_do.assignee_id)
+      - if !to_do.complete
         %tr
-          %th Complete
-          %th Task name
-          %th Due date
-          %th Assignee
-          %th Edit
-          %th Delete
-      %tbody
-      - @to_dos.each do |to_do|
-        - person = Assignee.find(to_do.assignee_id)
-        - if !to_do.complete
-          %tr
-            %td= button_to "Completed?", to_do_path(to_do, :to_do => { :complete => :true }), :method => :patch 
-            %td= to_do.task_name
-            %td= to_do.due_date
-            %td= person.assignee_name
-            %td= button_to 'Edit', edit_to_do_path(to_do), :method => :get
-            %td= button_to 'Destroy', to_do, :method => :delete, :data => { :confirm => 'Are you sure?' }
+          %td= link_to "Mark Completed", to_do_path(to_do, :to_do => { :complete => :true }), method: "patch", :class => "btn btn-success"
+          %td= to_do.task_name
+          %td= to_do.due_date
+          %td= person.assignee_name
+          %td= link_to "Edit", edit_to_do_path(to_do), :method => :get, :class => "btn btn-warning"
+          %td= link_to "Remove", to_do, :method => :delete, :class => "btn btn-danger", :data => { :confirm => 'Are you sure?' }
 
 .container
-  .page-header
-    %br
-    %h2 Completed Tasks
+  %br
+  %h2 Completed Tasks
 
-    %table.table.table-hover
-      %thead
+  %table.table.table-hover
+    %thead
+      %tr
+        %th Task name
+        %th Assignee
+        %th Edit
+        %th Remove Task
+    %tbody
+    - @to_dos.each do |to_do|
+      - person = Assignee.find(to_do.assignee_id)
+      - if to_do.complete
         %tr
-          %th Task name
-          %th Assignee
-          %th Edit
-          %th Delete
-      %tbody
-      - @to_dos.each do |to_do|
-        - person = Assignee.find(to_do.assignee_id)
-        - if to_do.complete
-          %tr
-            %td= to_do.task_name
-            %td= person.assignee_name
-            %td= button_to 'Edit', edit_to_do_path(to_do), :method => :get
-            %td= button_to 'Destroy', to_do, :method => :delete, :data => { :confirm => 'Are you sure?' }
+          %td= to_do.task_name
+          %td= person.assignee_name
+          %td= link_to "Edit", edit_to_do_path(to_do), :method => :get, :class => "btn btn-warning"
+          %td= link_to "Remove", to_do, :method => :delete, :class => "btn btn-danger", :data => { :confirm => 'Click "OK" to remove task from list.' }

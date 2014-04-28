@@ -7,9 +7,13 @@ gem 'rails', '4.1.0'
 gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
+# Use Bootstrap Forms for forms
+gem 'bootstrap_form'
 # Use Haml
 gem 'haml'
 gem 'haml-rails'
+# Use Flat UI kit
+gem 'flat-ui-sass', github: 'wingrunr21/flat-ui-sass'
 # Use Twitter Bootstrap for framework
 gem 'twitter-bootstrap-rails'
 # Use Uglifier as compressor for JavaScript assets
