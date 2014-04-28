@@ -1,6 +1,7 @@
 class ToDo < ActiveRecord::Base
 	belongs_to :assignee
-
+	validates_presence_of :assignee_id
+	
 	def self.find_person(person)
 		joins(:assignee).where('assignees.assignee_name LIKE ?', person)
 	end 

@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/wingrunr21/flat-ui-sass.git
+  revision: 8b613e564b15f89ea713b0f849b8169a07240b53
+  specs:
+    flat-ui-sass (2.1.3)
+      bootstrap-sass (>= 3.1)
+      sass (>= 3.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -28,6 +36,9 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
+    bootstrap-sass (3.1.1.1)
+      sass (~> 3.2)
+    bootstrap_form (2.1.1)
     builder (3.2.2)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -125,7 +136,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap_form
   coffee-rails (~> 4.0.0)
+  flat-ui-sass!
   haml
   haml-rails
   jbuilder (~> 2.0)
