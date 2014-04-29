@@ -1,19 +1,16 @@
-.wrap
-  / = Navigation
-  .navbar.navbar-default.col-md-12
+.container
+  .navbar.navbar-default
+    %h4 Search
     = form_tag search_to_dos_path, :class => "form-inline", method: :get do
-
-      Start Date:
-      = date_field_tag "search[start_date]","x", :class => "form-control col-md-2"
+      = label_tag "Start Date:"
+      = date_field_tag "search[start_date]","", :class => "form-control"
+      = label_tag "End Date:"
+      = date_field_tag "search[end_date]","", :class => "form-control"
+      = label_tag  "Name:"
+      = select_tag "search[assignee_name]", options_for_select(Assignee.pluck(:assignee_name)), include_blank: true, :class => "form-control"
       
-      End Date:
-      = date_field_tag "search[end_date]","x", :class => "form-control col-md-2"
-      
-      Name:
-      = select_tag "search[assignee_name]", options_for_select(Assignee.pluck(:assignee_name)), include_blank: true, :class => "form-control col-md-2"
-      
-      Completed?
-      =radio_button_tag "search[completed]", true, checked = false, :class => "radio"
+      = label_tag "Completed?"
+      = radio_button_tag "search[completed]", true, checked = false, :class => "radio"
       
       = submit_tag "Search", :class => "btn btn-default"
       
