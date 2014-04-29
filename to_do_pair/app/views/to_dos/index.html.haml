@@ -3,7 +3,7 @@
   .navbar.navbar-default.col-md-12
     = form_tag search_to_dos_path, :class => "form-inline", method: :get do
 
-      Start Date:
+      = label_tag "Start Date"
       = date_field_tag "search[start_date]","x", :class => "form-control col-md-2"
       
       End Date:
