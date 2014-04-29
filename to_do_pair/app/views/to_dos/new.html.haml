@@ -1,5 +1,30 @@
-%h1 New Task
+.page-header
+.col-md-4
+.jumbotron.col-md-4
+  %h2 New To-Do
 
-= render 'form'
+  / = To-Do Form = /
+  %p.lead Add a new to-do to your list.
+  = bootstrap_form_for(@to_do, layout: :horizontal, label_col: "col-md-3", control_col: "col-md-7") do |f|
+    - if @to_do.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@to_do.errors.count, "error")} prohibited this to_do from being saved:"
+        %ul
+          - @to_do.errors.full_messages.each do |msg|
+            %li= msg
+    = f.text_field :task_name
+    = f.date_select :due_date
+    = f.select :assignee_id, Assignee.all.collect { |a| [a.assignee_name, a.id] }, include_blank: true
+    = f.submit 'Add To-Do', :class => "btn btn-success col-md-4"
+    .col-md-1
+    
+    / = Back Button = /
+    %a.btn.btn-primary.col-md-4{href: to_dos_path, method: "get"} Back to List
+.col-md-4
 
-= link_to 'Back', to_dos_path
+
+/ %h1 New Task
+
+/ = render 'form'
+
+/ = link_to 'Back', to_dos_path

@@ -1,46 +1,27 @@
-<<<<<<< HEAD
-.wrap
-  / = Navigation
-  .navbar.navbar-default.col-md-12
-    = form_tag search_to_dos_path, :class => "form-inline", method: :get do
+.navbar.navbar-default.wrap
+  .col-md-12
+  = form_tag search_to_dos_path, :class => "form-inline", method: :get do
+    .col-md-1
+    = label_tag "Start Date:"
+    = date_field_tag "search[start_date]","", :class => "form-control"
+    = label_tag "End Date:"
+    = date_field_tag "search[end_date]","", :class => "form-control"
+    = label_tag  "Name:"
+    = select_tag "search[assignee_name]", options_for_select(Assignee.pluck(:assignee_name)), include_blank: true, :class => "form-control"
+    
+    = label_tag "Completed?"
+    = radio_button_tag "search[completed]", true, checked = false, :class => "radio"
+    
+    = submit_tag "Search", :class => "btn btn-default"
 
-      Start Date:
-      = date_field_tag "search[start_date]","x", :class => "form-control col-md-2"
-      
-      End Date:
-      = date_field_tag "search[end_date]","x", :class => "form-control col-md-2"
-      
-      Name:
-      = select_tag "search[assignee_name]", options_for_select(Assignee.pluck(:assignee_name)), include_blank: true, :class => "form-control col-md-2"
-      
-      Completed?
-      =radio_button_tag "search[completed]", true, checked = false, :class => "radio"
-=======
-.container
-  .navbar.navbar-default
-    %h4 Search
-    = form_tag search_to_dos_path, :class => "form-inline", method: :get do
-      = label_tag "Start Date:"
-      = date_field_tag "search[start_date]","", :class => "form-control"
-      = label_tag "End Date:"
-      = date_field_tag "search[end_date]","", :class => "form-control"
-      = label_tag  "Name:"
-      = select_tag "search[assignee_name]", options_for_select(Assignee.pluck(:assignee_name)), include_blank: true, :class => "form-control"
-      
-      = label_tag "Completed?"
-      = radio_button_tag "search[completed]", true, checked = false, :class => "radio"
->>>>>>> jeffs_branch
-      
-      = submit_tag "Search", :class => "btn btn-default"
-      
-      = link_to "New To Do", new_to_do_path, :method => :get, :class => "btn btn-primary"
-      
-      = link_to 'New Assignee', new_assignee_path, :method => :get, :class => "btn btn-primary"  
+    = link_to "New To Do", new_to_do_path, :method => :get, :class => "btn btn-primary"
+    
+    = link_to 'New Assignee', new_assignee_path, :method => :get, :class => "btn btn-primary"  
 
 / = Page content
 .container
   .col-md-12
-  %h2 Current Tasks
+  %h2 Current To-Dos
   %table.table.table-hover
     %thead
       %tr
@@ -57,14 +38,14 @@
         %tr
           %td= link_to "Mark Completed", to_do_path(to_do, :to_do => { :complete => :true }), method: "patch", :class => "btn btn-success"
           %td= to_do.task_name
-          %td= to_do.due_date
+          %td= to_do.due_date.try(:strftime, '%B %d, %Y')
           %td= person.assignee_name
           %td= link_to "Edit", edit_to_do_path(to_do), :method => :get, :class => "btn btn-warning"
-          %td= link_to "Remove", to_do, :method => :delete, :class => "btn btn-danger", :data => { :confirm => 'Are you sure?' }
+          %td= link_to "Remove", to_do, :method => :delete, :class => "btn btn-danger", :data => { :confirm => 'Are you sure you want to delete this task?' }
 
 .container
   %br
-  %h2 Completed Tasks
+  %h2 Completed To-Dos
 
   %table.table.table-hover
     %thead
