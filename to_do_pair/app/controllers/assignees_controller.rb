@@ -25,29 +25,16 @@ class AssigneesController < ApplicationController
   # POST /assignees.json
   def create
     @assignee = Assignee.new(assignee_params)
-
-    respond_to do |format|
-      if @assignee.save
-        format.html { redirect_to @assignee, notice: 'Assignee was successfully created.' }
-        format.json { render :show, status: :created, location: @assignee }
-      else
-        format.html { render :new }
-        format.json { render json: @assignee.errors, status: :unprocessable_entity }
-      end
+    if @assignee.save
+      redirect_to to_dos_path
     end
   end
 
   # PATCH/PUT /assignees/1
   # PATCH/PUT /assignees/1.json
   def update
-    respond_to do |format|
-      if @assignee.update(assignee_params)
-        format.html { redirect_to @assignee, notice: 'Assignee was successfully updated.' }
-        format.json { render :show, status: :ok, location: @assignee }
-      else
-        format.html { render :edit }
-        format.json { render json: @assignee.errors, status: :unprocessable_entity }
-      end
+    if @assignee.update(assignee_params)
+      redirect_to to_dos_path
     end
   end
 

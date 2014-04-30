@@ -15,8 +15,27 @@
  *= require_self
  */
 
-.top-header {
-min-height: 50px;
-margin-bottom: 20px;
+.navbar {
+position: relative;
+margin: 0 0 11px;
 border: 1px solid transparent;
+padding: 6px 0;
+}
+
+.jumbotron {
+  padding: 15px 30px 30px 30px;
+  margin: 0 0 30px;
+  font-size: 14px;
+  font-weight: 200;
+  line-height: 2.1428571435;
+  color: inherit;
+  background-color: #eee;
+  border: 1px solid transparent;
+  border-color:#ddd;
+}
+
+.page-header {
+padding-bottom: 9px;
+margin: 40px 0 20px;
+border-bottom: 0;
 }

@@ -25,29 +25,16 @@ class ToDosController < ApplicationController
   # POST /to_dos.json
   def create
     @to_do = ToDo.new(to_do_params)
-
-    respond_to do |format|
-      if @to_do.save
-        format.html { redirect_to @to_do, notice: 'To do was successfully created.' }
-        format.json { render :show, status: :created, location: @to_do }
-      else
-        format.html { render :new }
-        format.json { render json: @to_do.errors, status: :unprocessable_entity }
-      end
+    if @to_do.save
+      redirect_to to_dos_path
     end
   end
 
   # PATCH/PUT /to_dos/1
   # PATCH/PUT /to_dos/1.json
   def update
-    respond_to do |format|
-      if @to_do.update(to_do_params)
-        format.html { redirect_to @to_do, notice: 'To do was successfully updated.' }
-        format.json { render :show, status: :ok, location: @to_do }
-      else
-        format.html { render :edit }
-        format.json { render json: @to_do.errors, status: :unprocessable_entity }
-      end
+    if @to_do.update(to_do_params)
+      redirect_to to_dos_path
     end
   end
 
