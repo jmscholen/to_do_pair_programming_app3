@@ -1,28 +1,15 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This application is written with another Iron Yard student working in a paired programming assignment. The application uses Rails 4, Ruby 2 and SQLite as the database. 
 
 
-Please feel free to use a different markup language if you do not plan to run
+
+Technologies used aside from those mentioned above:
+
+* Bootstrap
+
+* SASS
+
+* Bootstrap javascript
+
 <tt>rake doc:app</tt>.
